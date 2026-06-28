@@ -1,0 +1,39 @@
+flowchart TB
+    subgraph frontend["Frontend"]
+        next["Next.js"]
+        react["React"]
+        ts["TypeScript"]
+    end
+
+    subgraph backend["Backend"]
+        node["Node.js"]
+        api["Server workflows"]
+    end
+
+    subgraph data["Data and Auth"]
+        supabase["Supabase"]
+        postgres["PostgreSQL"]
+        storage["Storage"]
+    end
+
+    subgraph ai["AI and Matching"]
+        azure["Azure AI"]
+        openai["OpenAI-compatible models"]
+        vectors["Embeddings"]
+    end
+
+    subgraph integration["Integrations"]
+        webhooks["Messaging webhooks"]
+        documents["Document processing"]
+    end
+
+    subgraph ops["Ops"]
+        docker["Docker"]
+        cloud["Cloud runtime"]
+    end
+
+    frontend --> backend
+    backend --> data
+    backend --> ai
+    backend --> integration
+    backend --> ops

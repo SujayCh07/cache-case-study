@@ -1,0 +1,19 @@
+flowchart TB
+    source["Private production repository"]
+    build["Build pipeline"]
+    web["Web application runtime"]
+    service["Supporting service runtime"]
+    data["Managed data services"]
+    ai["External AI services"]
+    messaging["Messaging providers"]
+    users["Candidates and recruiters"]
+
+    source --> build
+    build --> web
+    build --> service
+    users --> web
+    web --> data
+    web --> ai
+    web --> messaging
+    service --> ai
+    service --> data

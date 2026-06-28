@@ -1,0 +1,17 @@
+flowchart LR
+    role["Recruiter role intent"]
+    constraints["Hard constraints"]
+    structured["Structured profile"]
+    evidence["Project and skill evidence"]
+    semantic["Embedding similarity"]
+    fit["Role-fit evaluation"]
+    review["Ranked review list"]
+
+    role --> constraints
+    constraints --> structured
+    structured --> evidence
+    evidence --> semantic
+    role --> fit
+    constraints --> fit
+    semantic --> fit
+    fit --> review
