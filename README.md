@@ -145,7 +145,7 @@ flowchart LR
 | Embeddings              | Adds semantic similarity across projects, experience, and role context |
 | Recruiter review        | Keeps final evaluation with the human decision-maker                   |
 
-<img width="1692" height="583" alt="Screenshot 2026-06-28 at 4 26 06 PM" src="https://github.com/user-attachments/assets/424a2385-f412-461c-a382-f5d9627b9340" />
+<img width="831" height="612" alt="Screenshot 2026-06-28 at 4 56 09 PM" src="https://github.com/user-attachments/assets/a4eea4ed-e92d-4b91-bcfd-592f95557dca" />
 
 ---
 
@@ -175,7 +175,7 @@ flowchart LR
 * Notifications and recruiter actions
 * Shared profile views
 
-<img width="1663" height="346" alt="Screenshot 2026-06-28 at 4 26 45 PM" src="https://github.com/user-attachments/assets/2cb52e4f-2cc4-4e76-a574-d3e4c297d868" />
+<img width="1253" height="834" alt="Screenshot 2026-06-28 at 4 57 49 PM" src="https://github.com/user-attachments/assets/3febd77a-d46e-483c-a782-14d0ca91a51c" />
 
 ---
 
