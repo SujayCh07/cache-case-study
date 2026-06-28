@@ -213,3 +213,5 @@ Some of the most interesting engineering problems behind Cache were not just fea
 ## Note
 
 This repository is a public case study for a private production codebase. Diagrams, screenshots, and examples are simplified to show engineering approach without exposing sensitive implementation details.
+
+ALl screenshots use demo data and examples. No real candidate, recruiter, company, resume, or partner data is shown (other than my profile).
