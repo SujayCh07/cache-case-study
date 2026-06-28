@@ -1,21 +1,17 @@
-# CacheAI Case Study
+# Cache Case Study
 
 > AI recruitment platform that turns student work into structured candidate profiles and helps recruiters discover talent through evidence-based search and AI-assisted matching.
 
 <p align="center">
   <a href="https://cacheai.us">
-    <img src="https://img.shields.io/badge/Live%20Platform-cacheai.us-2563EB?style=for-the-badge" alt="CacheAI website" />
+    <img src="https://img.shields.io/badge/Live%20Platform-cacheai.us-6D28D9?style=for-the-badge" alt="Cache website" />
   </a>
   <a href="#platform-architecture">
-    <img src="https://img.shields.io/badge/Architecture-Case%20Study-111827?style=for-the-badge" alt="Architecture" />
+    <img src="https://img.shields.io/badge/Architecture-Overview-111827?style=for-the-badge" alt="Architecture overview" />
   </a>
   <a href="#matching-engine">
-    <img src="https://img.shields.io/badge/Matching-Engine-7C3AED?style=for-the-badge" alt="Matching Engine" />
+    <img src="https://img.shields.io/badge/Matching-Engine-7C3AED?style=for-the-badge" alt="Matching engine" />
   </a>
-</p>
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=nextjs,react,ts,nodejs,postgres,docker" alt="Tech stack icons" />
 </p>
 
 <p align="center">
@@ -32,12 +28,11 @@
 
 ## Overview
 
-CacheAI helps students turn projects, experience, resumes, skills, and profile data into structured recruiting profiles. Recruiters can search, filter, compare, and evaluate candidates based on evidence of what they have built, not just resume keywords.
+Cache helps students turn projects, experience, resumes, skills, and profile data into structured recruiting profiles. Recruiters can search, filter, compare, and evaluate candidates based on evidence of what they have built, not just resume keywords.
 
-This repository is a public engineering case study for a private production codebase. It documents the architecture, product flows, and engineering decisions behind CacheAI without exposing production source code, private user data, exact matching formulas, prompts, credentials, or internal business details.
+This repository is a public engineering case study for a private production codebase. It documents the product architecture, core workflows, and engineering decisions behind Cache without exposing production source code, private user data, exact matching formulas, prompts, credentials, or internal business details.
 
-> **TODO:** Add a hero screenshot of the CacheAI landing page, candidate profile, or recruiter dashboard here.
-> Suggested path: `docs/images/cacheai-hero.png`
+<img width="1708" height="897" alt="Screenshot 2026-06-28 at 4 23 44 PM" src="https://github.com/user-attachments/assets/ebc7c694-6040-4b2a-bc91-0ac3d2517feb" />
 
 ---
 
@@ -45,7 +40,7 @@ This repository is a public engineering case study for a private production code
 
 **Role:** Co-Founder & CTO
 
-I have worked across the product and engineering stack for CacheAI, including candidate onboarding, recruiter workflows, matching, auth, database design, AI-assisted profile structuring, messaging, and internal documentation.
+I have worked across the product and engineering stack for Cache, including candidate onboarding, recruiter workflows, matching, auth, database design, AI-assisted profile structuring, messaging, and internal documentation.
 
 ### What I built
 
@@ -62,57 +57,24 @@ I have worked across the product and engineering stack for CacheAI, including ca
 
 ## Platform Architecture
 
-CacheAI is built around a simple product boundary: candidates contribute structured evidence of their work, and recruiters evaluate that evidence through controlled search and matching workflows.
+Cache is built around a simple product boundary: students contribute structured evidence of their work, and recruiters evaluate that evidence through controlled search, matching, and review workflows.
 
-```mermaid
-flowchart TB
-    subgraph surfaces["Product surfaces"]
-        CandidateApp["Candidate app"]
-        RecruiterApp["Recruiter app"]
-        Messaging["SMS / WhatsApp onboarding"]
-        Admin["Internal workflows"]
-    end
+<p align="center">
+  <img width="100%" alt="Cache architecture and tech stack" src="https://github.com/user-attachments/assets/c71a60d5-5bba-4ee2-8eaf-65a6a684ea00" />
+</p>
 
-    subgraph application["Application layer"]
-        NextApp["Next.js app"]
-        API["API routes and workflow services"]
-        Auth["Role-aware auth boundary"]
-    end
+The public architecture view focuses on system shape, not implementation detail. It shows how student onboarding, structured profiles, recruiter search, role-aware auth, messaging, storage, and matching connect at a high level.
 
-    subgraph data["Data layer"]
-        Postgres["PostgreSQL / Supabase"]
-        Storage["Document storage"]
-        Events["Notifications and workflow records"]
-    end
+### Core platform areas
 
-    subgraph intelligence["AI and matching layer"]
-        Structuring["Profile structuring"]
-        Embeddings["Embeddings"]
-        Matching["Matching engine"]
-        Ranking["Ranking and role-fit signals"]
-    end
-
-    CandidateApp --> NextApp
-    RecruiterApp --> NextApp
-    Admin --> NextApp
-    Messaging --> API
-
-    NextApp --> API
-    API --> Auth
-    API --> Postgres
-    API --> Storage
-    API --> Events
-
-    API --> Structuring
-    Structuring --> Embeddings
-    Embeddings --> Matching
-    Postgres --> Matching
-    Matching --> Ranking
-    Ranking --> API
-```
-
-> **TODO:** Add an architecture screenshot or product dashboard screenshot here.
-> Suggested path: `docs/images/platform-architecture.png`
+| Area                 | What it handles                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------- |
+| Candidate app        | Profile creation, project evidence, resumes, skills, and student-facing workflows               |
+| Recruiter app        | Search, filters, candidate review, shortlists, interview requests, and pipeline workflows       |
+| Messaging onboarding | SMS/WhatsApp-style entrypoints, webhooks, conversation state, parsing, and magic-link handoff   |
+| API/workflow layer   | Product logic, orchestration, role checks, and backend workflow coordination                    |
+| Data layer           | Candidate profiles, recruiter actions, documents, notifications, interviews, and profile shares |
+| AI/matching layer    | Profile structuring, embeddings, semantic similarity, matching, and role-fit signals            |
 
 ---
 
@@ -120,7 +82,7 @@ flowchart TB
 
 One of the main product challenges was reducing the friction between “student has experience” and “student has a structured recruiting profile.”
 
-CacheAI supports onboarding through both the web product and messaging-style entrypoints. The messaging flow is designed to collect profile information progressively, maintain conversation state, and hand users into the authenticated web experience through magic links.
+Cache supports onboarding through both the web product and messaging-style entrypoints. The messaging flow is designed to collect profile information progressively, maintain conversation state, and hand users into the authenticated web experience through magic links.
 
 ```mermaid
 flowchart LR
@@ -133,6 +95,7 @@ flowchart LR
     Parser --> Draft["Candidate profile draft"]
 
     Web --> Draft
+
     Draft --> MagicLink["Magic-link handoff"]
     MagicLink --> Profile["Completed candidate profile"]
 ```
@@ -146,14 +109,13 @@ flowchart LR
 * Magic-link handoff into the main web app
 * Better conversion from initial student interest to completed profile
 
-> **TODO:** Add a screenshot of the SMS/WhatsApp onboarding flow here.
-> Suggested path: `docs/images/messaging-onboarding.png`
+<img width="839" height="405" alt="Screenshot 2026-06-28 at 4 25 24 PM" src="https://github.com/user-attachments/assets/b66e40bc-6f8c-40fd-8fe6-86265258e6c3" />
 
 ---
 
 ## Matching Engine
 
-CacheAI’s matching system is designed around recruiter intent, not generic resume ranking.
+Cache’s matching system is designed around recruiter intent, not generic resume ranking.
 
 The system combines structured profile data, hard constraints, skills, project evidence, and semantic similarity. Exact formulas, prompts, weights, thresholds, and scoring logic are intentionally excluded from this public case study.
 
@@ -183,14 +145,13 @@ flowchart LR
 | Embeddings              | Adds semantic similarity across projects, experience, and role context |
 | Recruiter review        | Keeps final evaluation with the human decision-maker                   |
 
-> **TODO:** Add a screenshot of recruiter search or ranked candidate review here.
-> Suggested path: `docs/images/matching-results.png`
+<img width="1692" height="583" alt="Screenshot 2026-06-28 at 4 26 06 PM" src="https://github.com/user-attachments/assets/424a2385-f412-461c-a382-f5d9627b9340" />
 
 ---
 
 ## Recruiter Workflows
 
-The recruiter side of CacheAI is built to help teams move from role requirements to candidate review quickly.
+The recruiter side of Cache is built to help teams move from role requirements to candidate review quickly.
 
 Recruiters can search across structured candidate records, evaluate project evidence, compare candidates, shortlist profiles, and move candidates toward interview workflows.
 
@@ -214,12 +175,13 @@ flowchart LR
 * Notifications and recruiter actions
 * Shared profile views
 
-> **TODO:** Add a screenshot of recruiter search, shortlist, or candidate profile review here.
-> Suggested path: `docs/images/recruiter-workflow.png`
+<img width="1663" height="346" alt="Screenshot 2026-06-28 at 4 26 45 PM" src="https://github.com/user-attachments/assets/2cb52e4f-2cc4-4e76-a574-d3e4c297d868" />
 
 ---
 
 ## Tech Stack
+
+The architecture image above includes the core stack visually. This table gives the public-safe breakdown.
 
 | Area           | Tools                                                                         |
 | -------------- | ----------------------------------------------------------------------------- |
@@ -237,7 +199,7 @@ flowchart LR
 
 ## Engineering Challenges
 
-Some of the most interesting engineering problems behind CacheAI were not just feature work. They were product-system problems.
+Some of the most interesting engineering problems behind Cache were not just feature work. They were product-system problems.
 
 * Designing a matching workflow that combines deterministic filters with semantic retrieval without turning recruiter review into a black box
 * Structuring highly variable student experience into consistent candidate records
@@ -252,14 +214,13 @@ Some of the most interesting engineering problems behind CacheAI were not just f
 
 | Area                   | Link                                                             |
 | ---------------------- | ---------------------------------------------------------------- |
-| Platform architecture  | [docs/architecture.md](docs/architecture.md)                     |
 | Matching engine        | [docs/matching-engine.md](docs/matching-engine.md)               |
 | Candidate onboarding   | [docs/onboarding.md](docs/onboarding.md)                         |
 | Recruiter workflows    | [docs/recruiter-workflows.md](docs/recruiter-workflows.md)       |
 | Engineering challenges | [docs/engineering-challenges.md](docs/engineering-challenges.md) |
 | Security note          | [SECURITY_NOTE.md](SECURITY_NOTE.md)                             |
 
-> **TODO:** If these docs do not exist yet, either create them or update the links to match the current filenames.
+If `docs/architecture.md` mostly repeats this README and the architecture image, you can delete it. Keep it only if you want a deeper written breakdown of system boundaries and tradeoffs.
 
 ---
 
@@ -269,22 +230,16 @@ Some of the most interesting engineering problems behind CacheAI were not just f
 cache-case-study/
 ├── README.md
 ├── SECURITY_NOTE.md
-├── docs/
-│   ├── architecture.md
-│   ├── matching-engine.md
-│   ├── onboarding.md
-│   ├── recruiter-workflows.md
-│   ├── engineering-challenges.md
-│   └── images/
-│       ├── cacheai-hero.png
-│       ├── platform-architecture.png
-│       ├── messaging-onboarding.png
-│       ├── matching-results.png
-│       └── recruiter-workflow.png
-└── diagrams/
-    ├── system-architecture.mmd
-    ├── matching-engine.mmd
-    └── onboarding-flow.mmd
+└── docs/
+    ├── matching-engine.md
+    ├── onboarding.md
+    ├── recruiter-workflows.md
+    ├── engineering-challenges.md
+    └── images/
+        ├── cache-hero.png
+        ├── messaging-onboarding.png
+        ├── matching-results.png
+        └── recruiter-workflow.png
 ```
 
 ---
