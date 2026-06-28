@@ -30,7 +30,7 @@
 
 Cache helps students turn projects, experience, resumes, skills, and profile data into structured recruiting profiles. Recruiters can search, filter, compare, and evaluate candidates based on evidence of what they have built, not just resume keywords.
 
-This repository is a public engineering case study for a private production codebase. It documents the product architecture, core workflows, and engineering decisions behind Cache without exposing production source code, private user data, exact matching formulas, prompts, credentials, or internal business details.
+This repository is a public engineering case study for a private production codebase. It documents the product architecture, core workflows, and engineering decisions behind Cache without any production source code, private user data, exact matching formulas, prompts, credentials, or internal business details.
 
 <img width="1708" height="897" alt="Screenshot 2026-06-28 at 4 23 44 PM" src="https://github.com/user-attachments/assets/ebc7c694-6040-4b2a-bc91-0ac3d2517feb" />
 
@@ -57,7 +57,7 @@ I have worked across the product and engineering stack for Cache, including cand
 
 ## Platform Architecture
 
-Cache is built around a simple product boundary: students contribute structured evidence of their work, and recruiters evaluate that evidence through controlled search, matching, and review workflows.
+Cache is built around a simple product boundary: students contribute structured evidence of their work in a profile, and recruiters evaluate that evidence through controlled search, matching, and review workflows.
 
 <p align="center">
   <img width="100%" alt="Cache architecture and tech stack" src="https://github.com/user-attachments/assets/c71a60d5-5bba-4ee2-8eaf-65a6a684ea00" />
@@ -181,7 +181,7 @@ flowchart LR
 
 ## Tech Stack
 
-The architecture image above includes the core stack visually. This table gives the public-safe breakdown.
+The architecture image above includes the core stack visually. This table gives the full breakdown.
 
 | Area           | Tools                                                                         |
 | -------------- | ----------------------------------------------------------------------------- |
@@ -207,68 +207,6 @@ Some of the most interesting engineering problems behind Cache were not just fea
 * Building messaging onboarding that can collect useful profile data without forcing a long form up front
 * Debugging auth/session behavior across frontend state, middleware, backend APIs, and Supabase event flows
 * Documenting enough of the platform for contributors to move quickly without exposing sensitive implementation details
-
----
-
-## Case Study Docs
-
-| Area                   | Link                                                             |
-| ---------------------- | ---------------------------------------------------------------- |
-| Matching engine        | [docs/matching-engine.md](docs/matching-engine.md)               |
-| Candidate onboarding   | [docs/onboarding.md](docs/onboarding.md)                         |
-| Recruiter workflows    | [docs/recruiter-workflows.md](docs/recruiter-workflows.md)       |
-| Engineering challenges | [docs/engineering-challenges.md](docs/engineering-challenges.md) |
-| Security note          | [SECURITY_NOTE.md](SECURITY_NOTE.md)                             |
-
-If `docs/architecture.md` mostly repeats this README and the architecture image, you can delete it. Keep it only if you want a deeper written breakdown of system boundaries and tradeoffs.
-
----
-
-## Suggested Repository Structure
-
-```text
-cache-case-study/
-├── README.md
-├── SECURITY_NOTE.md
-└── docs/
-    ├── matching-engine.md
-    ├── onboarding.md
-    ├── recruiter-workflows.md
-    ├── engineering-challenges.md
-    └── images/
-        ├── cache-hero.png
-        ├── messaging-onboarding.png
-        ├── matching-results.png
-        └── recruiter-workflow.png
-```
-
----
-
-## What Is Intentionally Excluded
-
-This public case study does not include:
-
-* Production source code
-* Private student, recruiter, company, or partner data
-* Credentials, keys, tokens, `.env` values, or production URLs
-* Exact API route implementations
-* Full production database schemas
-* Proprietary prompts
-* Exact matching formulas, scoring weights, thresholds, or ranking logic
-* Internal pricing, roadmap, customer details, or confidential business information
-
----
-
-## Future Work
-
-Areas I would continue improving:
-
-* Ranking explainability for recruiter-facing candidate results
-* Search quality analytics for recruiter behavior and candidate conversion
-* Admin QA tools for reviewing profile quality and match quality
-* More structured evaluation sets for matching behavior
-* Stronger observability around onboarding drop-off and auth/session behavior
-* Cleaner analytics around recruiter actions, shortlist behavior, and interview conversion
 
 ---
 
