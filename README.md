@@ -1,4 +1,4 @@
-# Cache Case Study
+# Cache Case Study - Sujay Chava
 
 > AI recruitment platform that turns student work into structured candidate profiles and helps recruiters discover talent through evidence-based search and AI-assisted matching.
 
